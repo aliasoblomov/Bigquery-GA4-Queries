@@ -1,5 +1,7 @@
-DECLARE start_date DATE DEFAULT '2024-01-01';  -- Replace with desired start date
-DECLARE end_date DATE DEFAULT '2024-12-31';    -- Replace with desired end date
+-- Declare date range variables to filter data
+DECLARE start_date STRING DEFAULT '2024-01-01';
+DECLARE end_date STRING DEFAULT '2024-12-31';
+
 
 WITH FlatEvents AS (
     -- Flatten the main event-level data
@@ -10,7 +12,8 @@ WITH FlatEvents AS (
     FROM
         `your-project-id.analytics_1234567890.events_*` -- Replace with your actual project and dataset
     WHERE 
-        event_timestamp BETWEEN UNIX_MICROS(DATE_TO_TIMESTAMP(start_date)) AND UNIX_MICROS(DATE_TO_TIMESTAMP(end_date))
+             _TABLE_SUFFIX BETWEEN REPLACE(start_date, '-', '') AND REPLACE(end_date, '-', '')
+
 ),
 
 FlatEventParams AS (
@@ -30,8 +33,7 @@ FlatEventParams AS (
         `your-project-id.analytics_1234567890.events_*`, -- Replace with your actual project and dataset
         UNNEST(event_params) AS event_params
     WHERE 
-        event_timestamp BETWEEN UNIX_MICROS(DATE_TO_TIMESTAMP(start_date)) AND UNIX_MICROS(DATE_TO_TIMESTAMP(end_date))
-),
+       _TABLE_SUFFIX BETWEEN REPLACE(start_date, '-', '') AND REPLACE(end_date, '-', '')),
 
 FlatUserProperties AS (
     -- Unnest user properties
@@ -50,8 +52,7 @@ FlatUserProperties AS (
         `your-project-id.analytics_1234567890.events_*`, -- Replace with your actual project and dataset
         UNNEST(user_properties) AS user_properties
     WHERE 
-        event_timestamp BETWEEN UNIX_MICROS(DATE_TO_TIMESTAMP(start_date)) AND UNIX_MICROS(DATE_TO_TIMESTAMP(end_date))
-),
+        _TABLE_SUFFIX BETWEEN REPLACE(start_date, '-', '') AND REPLACE(end_date, '-', '')),
 
 FlatItems AS (
     -- Unnest item-level data
@@ -90,8 +91,7 @@ FlatItems AS (
         `your-project-id.analytics_1234567890.events_*`, -- Replace with your actual project and dataset
         UNNEST(items) AS items
     WHERE 
-        event_timestamp BETWEEN UNIX_MICROS(DATE_TO_TIMESTAMP(start_date)) AND UNIX_MICROS(DATE_TO_TIMESTAMP(end_date))
-)
+    _TABLE_SUFFIX BETWEEN REPLACE(start_date, '-', '') AND REPLACE(end_date, '-', ''))
 
 SELECT
     -- Combine all flattened data into one table
