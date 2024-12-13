@@ -6,6 +6,20 @@ Welcome to the **BigQuery-GA4-Queries** repository! This open-source collection 
   </a>
 </div>
 
+## Table of Contents
+
+- [What’s Included?](##whats-included)
+- [How to Use](##how-to-use)
+- [Query Handbook](##query-handbook)
+  - [Event Scope](###event-scope)
+  - [Session Scope](###session-scope)
+  - [User Scope](###user-scope)
+  - [eCommerce](###ecommerce)
+  - [Consent Mode](###consent-mode)
+  - [BigQuery Administration](###bigquery-administration)
+  - [Extras (SEO & Ads)](###extras-seo--ads)
+- [Collaboration Guidelines](##collaboration-guidelines)
+
 ## What’s Included?
 
 This repository contains a +65 diverse set of **ready-to-use and fully customizable queries**, grouped into logical folders for easier access and organization. Each query is designed to handle common and advanced use cases, from session analysis and ecommerce reporting to traffic attribution and user behavior exploration.
