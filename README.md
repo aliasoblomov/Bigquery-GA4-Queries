@@ -1,5 +1,7 @@
 Welcome to the **BigQuery-GA4-Queries** repository! This open-source collection is a curated set of SQL queries specifically designed for analyzing and extracting insights from **Google Analytics 4 (GA4)** exported data in BigQuery. Over years of working with GA4 data exports, these queries have become my go-to tools for daily reporting and analysis. Now, I’m making them available for everyone to use and adapt.
 
+[GA4-bigquery.png](https://postimg.cc/fJtQWYJz)
+
 ## What’s Included?
 
 This repository contains a +65 diverse set of **ready-to-use and fully customizable queries**, grouped into logical folders for easier access and organization. Each query is designed to handle common and advanced use cases, from session analysis and ecommerce reporting to traffic attribution and user behavior exploration.
