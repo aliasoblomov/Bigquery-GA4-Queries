@@ -9,8 +9,8 @@ Welcome to the **BigQuery-GA4-Queries** repository! This open-source collection 
 ## Table of Contents
 
 - [What’s Included?](#whats-included)
-- [How to Use](#how-to-use)
-- [Query Handbook](#query-handbook)
+- [How to Use👨‍🦯‍➡️](#how-to-use)
+- [Query Handbook📒](#query-handbook)
   - [Event Scope](#event-scope)
   - [Session Scope](#session-scope)
   - [User Scope](#user-scope)
@@ -18,7 +18,7 @@ Welcome to the **BigQuery-GA4-Queries** repository! This open-source collection 
   - [Consent Mode](#consent-mode)
   - [BigQuery Administration](#bigquery-administration)
   - [Extras (SEO & Ads)](#extras-seo--ads)
-- [Collaboration Guidelines](#collaboration-guidelines)
+- [Collaboration Guidelines🤝](#collaboration-guidelines)
 
 ## What’s Included?
 
