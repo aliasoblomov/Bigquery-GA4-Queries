@@ -10,7 +10,8 @@ FROM
 WHERE
     session_traffic_source_last_click.google_ads_campaign.account_name IS NOT NULL -- Filter valid account names
     AND session_traffic_source_last_click.google_ads_campaign.campaign_name IS NOT NULL -- Filter valid campaign names
-    AND event_timestamp BETWEEN TIMESTAMP(start_date) AND TIMESTAMP(end_date) -- Date range filter
+    AND _TABLE_SUFFIX BETWEEN REPLACE(start_date, '-', '') AND REPLACE(end_date, '-', '') -- Date range filter
+-- Date range filter
 GROUP BY
     google_ads_account_name, google_ads_campaign_name
 ORDER BY
