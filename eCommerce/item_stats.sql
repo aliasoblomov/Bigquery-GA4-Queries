@@ -1,5 +1,6 @@
-DECLARE start_date DATE DEFAULT '2024-01-01'; -- Start date for query range
-DECLARE end_date DATE DEFAULT '2024-12-31'; -- End date for query range
+DECLARE start_date STRING DEFAULT '2024-01-01';
+DECLARE end_date STRING DEFAULT '2024-12-31';
+
 
 WITH PurchaseItems AS (
     -- Extract purchase-related item data with date range filter
@@ -12,7 +13,7 @@ WITH PurchaseItems AS (
         UNNEST(items) AS items
     WHERE
         event_name = 'purchase' -- Filter for purchase events
-        AND _TABLE_SUFFIX BETWEEN FORMAT_DATE('%Y%m%d', start_date) AND FORMAT_DATE('%Y%m%d', end_date) -- Apply date range filter
+        AND     _TABLE_SUFFIX BETWEEN REPLACE(start_date, '-', '') AND REPLACE(end_date, '-', '') -- Dynamic date filtering
 )
 
 SELECT
