@@ -19,7 +19,7 @@ WITH EventData AS (
     FROM
         `your-project-id.analytics_1234567890.events_*` -- Replace with your actual project and dataset
     WHERE
-        event_timestamp BETWEEN TIMESTAMP(start_date) AND TIMESTAMP(end_date)  -- Filter events by date range
+                _TABLE_SUFFIX BETWEEN REPLACE(start_date, '-', '') AND REPLACE(end_date, '-', '') -- Date range filter
     GROUP BY
         geo.continent, geo.sub_continent, geo.country, geo.region, geo.city, user_pseudo_id, event_name, event_params
 )
