@@ -7,13 +7,11 @@ WITH FlatEvents AS (
     -- Flatten the main event-level data
     SELECT
         (SELECT value.int_value FROM UNNEST(event_params) WHERE key = 'ga_session_id') AS ga_session_id,
-        * EXCEPT(event_params, user_properties, items),
-        CONCAT(user_pseudo_id, '-', event_timestamp, '-', event_name, '-', ROW_NUMBER() OVER (PARTITION BY user_pseudo_id, event_timestamp, event_name)) AS join_key
+        * EXCEPT(event_params, user_properties, items)
     FROM
-        `your-project-id.analytics_1234567890.events_*` -- Replace with your actual project and dataset
+        `your_project_id.your_dataset_id.events_*` -- Replace with your actual project and dataset
     WHERE 
-             _TABLE_SUFFIX BETWEEN REPLACE(start_date, '-', '') AND REPLACE(end_date, '-', '')
-
+        _TABLE_SUFFIX BETWEEN FORMAT_DATE('%Y%m%d', start_date) AND FORMAT_DATE('%Y%m%d', end_date)
 ),
 
 FlatEventParams AS (
@@ -22,18 +20,17 @@ FlatEventParams AS (
         user_pseudo_id,
         event_timestamp,
         event_name,
-        ROW_NUMBER() OVER (PARTITION BY user_pseudo_id, event_timestamp, event_name) AS dedup_id,
         event_params.key AS param_key,
         event_params.value.string_value AS param_string_value,
         event_params.value.int_value AS param_int_value,
         event_params.value.float_value AS param_float_value,
-        event_params.value.double_value AS param_double_value,
-        CONCAT(user_pseudo_id, '-', event_timestamp, '-', event_name, '-', ROW_NUMBER() OVER (PARTITION BY user_pseudo_id, event_timestamp, event_name)) AS join_key
+        event_params.value.double_value AS param_double_value
     FROM
-        `your-project-id.analytics_1234567890.events_*`, -- Replace with your actual project and dataset
+        `your_project_id.your_dataset_id.events_*`, -- Replace with your actual project and dataset
         UNNEST(event_params) AS event_params
     WHERE 
-       _TABLE_SUFFIX BETWEEN REPLACE(start_date, '-', '') AND REPLACE(end_date, '-', '')),
+        _TABLE_SUFFIX BETWEEN FORMAT_DATE('%Y%m%d', start_date) AND FORMAT_DATE('%Y%m%d', end_date)
+),
 
 FlatUserProperties AS (
     -- Unnest user properties
@@ -46,13 +43,13 @@ FlatUserProperties AS (
         user_properties.value.int_value AS user_property_int_value,
         user_properties.value.float_value AS user_property_float_value,
         user_properties.value.double_value AS user_property_double_value,
-        user_properties.value.set_timestamp_micros AS user_property_set_timestamp,
-        CONCAT(user_pseudo_id, '-', event_timestamp, '-', event_name, '-', ROW_NUMBER() OVER (PARTITION BY user_pseudo_id, event_timestamp, event_name)) AS join_key
+        user_properties.value.set_timestamp_micros AS user_property_set_timestamp
     FROM
-        `your-project-id.analytics_1234567890.events_*`, -- Replace with your actual project and dataset
+        `your_project_id.your_dataset_id.events_*`, -- Replace with your actual project and dataset
         UNNEST(user_properties) AS user_properties
     WHERE 
-        _TABLE_SUFFIX BETWEEN REPLACE(start_date, '-', '') AND REPLACE(end_date, '-', '')),
+        _TABLE_SUFFIX BETWEEN FORMAT_DATE('%Y%m%d', start_date) AND FORMAT_DATE('%Y%m%d', end_date)
+),
 
 FlatItems AS (
     -- Unnest item-level data
@@ -85,13 +82,13 @@ FlatItems AS (
         items.promotion_id,
         items.promotion_name,
         items.creative_name,
-        items.creative_slot,
-        CONCAT(user_pseudo_id, '-', event_timestamp, '-', event_name, '-', ROW_NUMBER() OVER (PARTITION BY user_pseudo_id, event_timestamp, event_name)) AS join_key
+        items.creative_slot
     FROM
-        `your-project-id.analytics_1234567890.events_*`, -- Replace with your actual project and dataset
+        `your_project_id.your_dataset_id.events_*`, -- Replace with your actual project and dataset
         UNNEST(items) AS items
     WHERE 
-    _TABLE_SUFFIX BETWEEN REPLACE(start_date, '-', '') AND REPLACE(end_date, '-', ''))
+        _TABLE_SUFFIX BETWEEN FORMAT_DATE('%Y%m%d', start_date) AND FORMAT_DATE('%Y%m%d', end_date)
+)
 
 SELECT
     -- Combine all flattened data into one table
@@ -136,8 +133,17 @@ SELECT
 FROM 
     FlatEvents fe
 LEFT JOIN 
-    FlatEventParams fep USING (join_key)
+    FlatEventParams fep 
+    ON fe.user_pseudo_id = fep.user_pseudo_id 
+    AND fe.event_timestamp = fep.event_timestamp 
+    AND fe.event_name = fep.event_name
 LEFT JOIN 
-    FlatUserProperties fup USING (join_key)
+    FlatUserProperties fup 
+    ON fe.user_pseudo_id = fup.user_pseudo_id 
+    AND fe.event_timestamp = fup.event_timestamp 
+    AND fe.event_name = fup.event_name
 LEFT JOIN 
-    FlatItems fi USING (join_key);
+    FlatItems fi 
+    ON fe.user_pseudo_id = fi.user_pseudo_id 
+    AND fe.event_timestamp = fi.event_timestamp 
+    AND fe.event_name = fi.event_name;
