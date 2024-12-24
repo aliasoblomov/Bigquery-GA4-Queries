@@ -10,6 +10,7 @@ Welcome to the **BigQuery-GA4-Queries** repository! This open-source collection 
 
 - [What’s Included?](#whats-included)
 - [How to Use👨‍🦯‍➡️](#how-to-use)
+- [Quick Pull in BigQuery with BigFunctions](#)
 - [Query Handbook📒](#query-handbook)
   - [Event Scope](#event-scope)
   - [Session Scope](#session-scope)
@@ -31,6 +32,37 @@ This repository contains a +65 diverse set of **ready-to-use and fully customiza
 3. Run the queries in BigQuery to instantly generate reports tailored to your needs.
 
 `Ensure you have active GA4 exports and BigQuery Admin access to a project—no prior SQL knowledge is required.`
+
+Here’s the updated version with a new title and a concise style:
+
+---
+
+## **Quick Pull in BigQuery with BigFunctions**
+
+Easily query GA4 data in BigQuery using **[BigFunctions]([url](https://unytics.io/bigfunctions/bigfunctions/create_ga4_views/))**, a set of pre-built table functions that simplify data analysis. Follow these steps to set it up:
+
+### **How to Use BigFunctions for GA4 Queries**
+1. **Create a Dataset**  
+   Prepare a dataset to store table functions:
+   ```sql
+   CREATE SCHEMA `your_project.ga4_bigquery_queries`;
+   ```
+
+2. **Generate Table Functions**  
+   Run the `create_ga4_views` function to generate reusable table functions:  
+   ```sql
+   CALL bigfunctions.us.create_ga4_views(
+     'your_project.analytics_dataset',   -- Replace with GA4 dataset
+     'your_project.ga4_bigquery_queries' -- Destination for table functions
+   );
+   ```
+
+3. **Query Data**  
+   Use the generated table functions to pull GA4 data with date ranges:  
+   ```sql
+   SELECT *
+   FROM `your_project.ga4_bigquery_queries`.event_scope__flatten_events('2024-11-01', '2024-12-01');
+   ```
 
 ## Query Handbook
 
