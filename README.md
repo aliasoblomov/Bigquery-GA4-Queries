@@ -10,7 +10,7 @@ Welcome to the **BigQuery-GA4-Queries** repository! This open-source collection 
 
 - [What’s Included?](#whats-included)
 - [How to Use👨‍🦯‍➡️](#how-to-use)
-- [Quick Pull in BigQuery with BigFunctions](#)
+- [Quick Pull in BigQuery with BigFunctions](#quick-pull-in-bigquery-with-bigfunctions)
 - [Query Handbook📒](#query-handbook)
   - [Event Scope](#event-scope)
   - [Session Scope](#session-scope)
@@ -33,11 +33,7 @@ This repository contains a +65 diverse set of **ready-to-use and fully customiza
 
 `Ensure you have active GA4 exports and BigQuery Admin access to a project—no prior SQL knowledge is required.`
 
-Here’s the updated version with a new title and a concise style:
-
----
-
-## **Quick Pull in BigQuery with BigFunctions**
+## Quick Pull in BigQuery with BigFunctions
 
 Easily query GA4 data in BigQuery using **[BigFunctions]([url](https://unytics.io/bigfunctions/bigfunctions/create_ga4_views/))**, a set of pre-built table functions that simplify data analysis. Follow these steps to set it up:
 
