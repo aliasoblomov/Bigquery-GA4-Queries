@@ -354,8 +354,21 @@ Analyzes traffic acquisition and related metrics, providing insights into the pe
 The **User Scope** folder focuses on analyzing user behavior, acquisition, and retention. It provides insights into user-level metrics, including revenue, conversion rates, and engagement, helping you understand user lifecycle stages.
 
 ---
+#### **1. active_user_retention_cohort.sql**
 
-#### **1. average_revenue_per_user_id.sql**
+**Description:**  
+Analyzes weekly retention of users acquired in week 0 (first session) and their subsequent activity over the next four weeks. The query tracks user re-engagement across weeks, showing how many users continue to interact with your platform after their initial session.
+
+**Applications:**
+
+- **Retention Analysis**: Understand user retention patterns week by week.
+- **Behavioral Insights**: Measure how active users remain after their first session.
+- **Cohort Reporting**: Generate cohort-based retention reports for deeper lifecycle analysis.
+
+---
+
+
+#### **2. average_revenue_per_user_id.sql**
 
 **Description:**  
 Calculates the average revenue generated per user ID based on lifetime values (LTV).
@@ -366,7 +379,7 @@ Calculates the average revenue generated per user ID based on lifetime values (L
 
 ---
 
-#### **2. average_revenue_per_user_pseudo_id.sql**
+#### **3. average_revenue_per_user_pseudo_id.sql**
 
 **Description:**  
 Computes the average revenue generated per user pseudo ID (client_id, Device_id) using LTV metrics.
@@ -377,7 +390,7 @@ Computes the average revenue generated per user pseudo ID (client_id, Device_id)
 
 ---
 
-#### **3. daily_user_vs_new_user.sql**
+#### **4. daily_user_vs_new_user.sql**
 
 **Description:**  
 Compares the number of new and returning users for each day to highlight acquisition trends.
@@ -390,7 +403,7 @@ Compares the number of new and returning users for each day to highlight acquisi
 
 ---
 
-#### **4. device_category_user_share.sql**
+#### **5. device_category_user_share.sql**
 
 **Description:**  
 Calculates user distribution across device categories (e.g., mobile, desktop, tablet).
@@ -403,7 +416,7 @@ Calculates user distribution across device categories (e.g., mobile, desktop, ta
 
 ---
 
-#### **5. ecommerce_events_by_first_user_landing_page.sql**
+#### **6. ecommerce_events_by_first_user_landing_page.sql**
 
 **Description:**  
 Attributes key metrics (e.g., views, add-to-cart actions, purchases) to the first landing page visited by users.
@@ -416,7 +429,7 @@ Attributes key metrics (e.g., views, add-to-cart actions, purchases) to the firs
 
 ---
 
-#### **6. first_landing_page_of_purchased_users.sql**
+#### **7. first_landing_page_of_purchased_users.sql**
 
 **Description:**  
 Identifies the first landing page visited by users who eventually made a purchase.
@@ -429,7 +442,7 @@ Identifies the first landing page visited by users who eventually made a purchas
 
 ---
 
-#### **7. first_landing_page_of_signedup_users.sql**
+#### **8. first_landing_page_of_signedup_users.sql**
 
 **Description:**  
 Identifies the first landing page visited by users who signed up for an account.
@@ -442,7 +455,7 @@ Identifies the first landing page visited by users who signed up for an account.
 
 ---
 
-#### **8. first_visit_to_purchase_time_by_traffic_source.sql**
+#### **9. first_visit_to_purchase_time_by_traffic_source.sql**
 
 **Description:**  
 Analyzes the time (in days) between a user's first visit and their purchase, grouped by traffic source.
@@ -455,7 +468,7 @@ Analyzes the time (in days) between a user's first visit and their purchase, gro
 
 ---
 
-#### **9. first_visit_to_signup_time_by_traffic_source.sql**
+#### **10. first_visit_to_signup_time_by_traffic_source.sql**
 
 **Description:**  
 Calculates the time (in days) between a user's first visit and their sign-up, grouped by traffic source.
@@ -468,7 +481,7 @@ Calculates the time (in days) between a user's first visit and their sign-up, gr
 
 ---
 
-#### **10. geographic_user_metrics.sql**
+#### **11. geographic_user_metrics.sql**
 
 **Description:**  
 Provides geo-location insights, including user, session, and purchase counts grouped by continent, country, and city.
@@ -481,7 +494,7 @@ Provides geo-location insights, including user, session, and purchase counts gro
 
 ---
 
-#### **11. lifetime_value_and_sessions_by_user_id.sql**
+#### **12. lifetime_value_and_sessions_by_user_id.sql**
 
 **Description:**  
 Calculates the customer lifetime value (CLV) and total sessions for each user, grouped by user ID.
@@ -494,7 +507,7 @@ Calculates the customer lifetime value (CLV) and total sessions for each user, g
 
 ---
 
-#### **12. lifetime_value_and_sessions_by_user_pseudo_id.sql**
+#### **13. lifetime_value_and_sessions_by_user_pseudo_id.sql**
 
 **Description:**  
 Calculates the customer lifetime value (CLV) and total sessions for each pseudonymous user.
@@ -506,7 +519,7 @@ Calculates the customer lifetime value (CLV) and total sessions for each pseudon
 
 ---
 
-#### **13. monthly_user_conversion_rate_summary.sql**
+#### **14. monthly_user_conversion_rate_summary.sql**
 
 **Description:**  
 Calculates monthly conversion rates by dividing converted users by total users for each month.
@@ -519,7 +532,7 @@ Calculates monthly conversion rates by dividing converted users by total users f
 
 ---
 
-#### **14. num_sessions_before_purchase_by_initial_landing_page.sql**
+#### **15. num_sessions_before_purchase_by_initial_landing_page.sql**
 
 **Description:**  
 Analyzes the number of sessions a user takes before making a purchase, grouped by the user's initial landing page.
@@ -532,7 +545,7 @@ Analyzes the number of sessions a user takes before making a purchase, grouped b
 
 ---
 
-#### **15. purchase_demographic_summary.sql**
+#### **16. purchase_demographic_summary.sql**
 
 **Description:**  
 Analyzes the demographics (geo-location and device) of users who made purchases, providing insights into purchase patterns.
@@ -545,7 +558,7 @@ Analyzes the demographics (geo-location and device) of users who made purchases,
 
 ---
 
-#### **16. signup_to_purchase_time_by_traffic_source.sql**
+#### **17. signup_to_purchase_time_by_traffic_source.sql**
 
 **Description:**  
 Calculates the average time (in days) between a user's signup and their first purchase, grouped by traffic source.
@@ -558,7 +571,7 @@ Calculates the average time (in days) between a user's signup and their first pu
 
 ---
 
-#### **17. user_acquisition_summary.sql**
+#### **18. user_acquisition_summary.sql**
 
 **Description:**  
 Analyzes user acquisition metrics, including total users and their respective acquisition sources.
@@ -571,7 +584,7 @@ Analyzes user acquisition metrics, including total users and their respective ac
 
 ---
 
-#### **18. user_channel_grouping.sql**
+#### **19. user_channel_grouping.sql**
 
 **Description:**  
 Groups users by traffic source and medium, categorizing them into predefined channel groupings like Organic Search, Paid Social, and Email.
@@ -584,7 +597,7 @@ Groups users by traffic source and medium, categorizing them into predefined cha
 
 ---
 
-#### **19. user_ltv_by_first_page_location.sql**
+#### **20. user_ltv_by_first_page_location.sql**
 
 **Description:**  
 Calculates the lifetime value (LTV) of users based on their first page location.
@@ -597,7 +610,7 @@ Calculates the lifetime value (LTV) of users based on their first page location.
 
 ---
 
-#### **20. user_transactions_summary_by_initial_source.sql**
+#### **21. user_transactions_summary_by_initial_source.sql**
 
 **Description:**  
 Summarizes user transactions, including total revenue and transaction count, grouped by their first acquisition source.
